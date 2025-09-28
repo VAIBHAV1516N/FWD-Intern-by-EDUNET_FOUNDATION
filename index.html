@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task Manager — Progress Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Task Manager — Progress Tracker</h1>
+        <div class="meta">Add, edit, complete & delete tasks. Progress stored in Local Storage.</div>
+      </div>
+      <div class="meta" id="clock">—</div>
+    </header>
+
+    <div class="grid">
+      <div>
+        <section class="card">
+          <form id="taskForm">
+            <div class="form-col">
+              <input id="title" type="text" placeholder="Task title (required)" required />
+              <div style="display:flex;gap:8px;margin-top:8px">
+                <input id="due" type="date" />
+                <select id="priority" aria-label="priority">
+                  <option value="low">Low</option>
+                  <option value="medium" selected>Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </div>
+              <textarea id="desc" placeholder="Short description (optional)"></textarea>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+              <button id="addBtn" type="submit">Add task</button>
+              <div style="font-size:12px;color:var(--muted);max-width:160px;text-align:right">Tip: press Enter inside title to quickly add.</div>
+            </div>
+          </form>
+
+          <div class="filters" style="margin-top:14px">
+            <div class="chip active" data-filter="all">All</div>
+            <div class="chip" data-filter="active">Active</div>
+            <div class="chip" data-filter="completed">Completed</div>
+            <div class="chip" data-filter="due-today">Due Today</div>
+            <div class="chip" data-filter="high">High Priority</div>
+          </div>
+
+          <ul class="tasks" id="taskList" aria-live="polite"></ul>
+        </section>
+      </div>
+
+      <aside class="right">
+        <div class="card stats">
+          <div class="progress-wrap">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+              <strong>Overall Progress</strong>
+              <span id="percentText">0%</span>
+            </div>
+            <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+            <div style="display:flex;justify-content:space-between;margin-top:8px;color:var(--muted);font-size:13px">
+              <div>Total: <span id="totalCount">0</span></div>
+              <div>Done: <span id="doneCount">0</span></div>
+            </div>
+          </div>
+
+          <div style="padding:12px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+              <strong>Quick actions</strong>
+              <div class="meta" style="font-size:12px">LocalStorage</div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button id="clearCompleted">Clear completed</button>
+              <button id="resetAll" style="background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04);">Reset all</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <strong>Stats</strong>
+          <div style="margin-top:8px;color:var(--muted);font-size:13px">
+            <div>Active tasks: <span id="activeCount">0</span></div>
+            <div>High priority: <span id="highCount">0</span></div>
+            <div>Due today: <span id="dueTodayCount">0</span></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer>Built with plain HTML, CSS & JavaScript • Data saved to <code>localStorage</code> by @Vaibhav_Patil</footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
